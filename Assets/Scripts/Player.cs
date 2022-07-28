@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     public Sprite[] sprites;
     private int spriteIndex;
-    private Vector3 direction;
+    public Vector3 direction;
     //Customizar a quantidade de gravidade do bichinho que poderemos usar para mudar a dificuldade do xogo.
     public float gravity = -9.8f;
     public float strength = 5f;

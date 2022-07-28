@@ -19,6 +19,7 @@ public class Parallax : MonoBehaviour
 
     public void StartParallax()
     {
+        StopParallax();
         StartCoroutine(UpdateParallax());
     }
     

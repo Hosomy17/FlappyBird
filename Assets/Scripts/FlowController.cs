@@ -6,13 +6,25 @@ using UnityEngine;
 public class FlowController : MonoBehaviour
 {
     [SerializeField]
+    private GameObject _menu;
+    
+    [SerializeField]
     private Parallax _parallax;
+    
+    [SerializeField]
+    private Player _player;
+    private Vector3 _playerInitialPosition;
     
     #region Menu
     
     public void OpenMenu()
     {
+        _menu.SetActive(true);
+        
         _parallax.StopParallax();
+        
+        _player.enabled = false;
+        
         Debug.Log("ABRIU MENU");
     }
     
@@ -22,7 +34,14 @@ public class FlowController : MonoBehaviour
     
     public void OpenGame()
     {
+        _menu.SetActive(false);
+        
         _parallax.StartParallax();
+
+        _player.transform.localPosition = _playerInitialPosition;
+        _player.direction = Vector3.zero;
+        _player.enabled = true;
+        
         Debug.Log("ABRIU JOGO");
     }
     
@@ -32,7 +51,12 @@ public class FlowController : MonoBehaviour
     
     public void OpenResults()
     {
+        _menu.SetActive(false);
+        
         _parallax.StopParallax();
+        
+        _player.enabled = false;
+        
         Debug.Log("ABRIU RESULTADOS");
     }
     
@@ -45,5 +69,8 @@ public class FlowController : MonoBehaviour
     private void Awake()
     {
         _instance = this;
+        _playerInitialPosition = _player.transform.localPosition;
+
+        OpenMenu();
     }
 }
