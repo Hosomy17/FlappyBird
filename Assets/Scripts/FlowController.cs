@@ -42,6 +42,13 @@ public class FlowController : MonoBehaviour
         _player.direction = Vector3.zero;
         _player.enabled = true;
         
+        Pipes[] pipes = FindObjectsOfType<Pipes>();
+
+        for (int i = 0; i < pipes.Length; i++)
+        {
+            Destroy(pipes[i].gameObject);
+        }
+        
         Debug.Log("ABRIU JOGO");
     }
     
