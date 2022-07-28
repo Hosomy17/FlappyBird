@@ -5,6 +5,39 @@ using UnityEngine;
 
 public class FlowController : MonoBehaviour
 {
+    [SerializeField]
+    private Parallax _parallax;
+    
+    #region Menu
+    
+    public void OpenMenu()
+    {
+        _parallax.StopParallax();
+        Debug.Log("ABRIU MENU");
+    }
+    
+    #endregion
+    
+    #region Game
+    
+    public void OpenGame()
+    {
+        _parallax.StartParallax();
+        Debug.Log("ABRIU JOGO");
+    }
+    
+    #endregion
+    
+    #region Results
+    
+    public void OpenResults()
+    {
+        _parallax.StopParallax();
+        Debug.Log("ABRIU RESULTADOS");
+    }
+    
+    #endregion
+    
     private static FlowController _instance;
 
     public static FlowController Global => _instance;
@@ -12,20 +45,5 @@ public class FlowController : MonoBehaviour
     private void Awake()
     {
         _instance = this;
-    }
-
-    public void OpenMenu()
-    {
-        Debug.Log("ABRIU MENU");
-    }
-
-    public void OpenGame()
-    {
-        Debug.Log("ABRIU JOGO");
-    }
-
-    public void OpenResults()
-    {
-        Debug.Log("ABRIU RESULTADOS");
     }
 }
