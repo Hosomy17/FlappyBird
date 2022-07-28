@@ -7,6 +7,9 @@ public class FlowController : MonoBehaviour
 {
     [SerializeField]
     private GameObject _menu;
+
+    [SerializeField] 
+    private GameObject _gameOver;
     
     [SerializeField]
     private Parallax _parallax;
@@ -20,6 +23,8 @@ public class FlowController : MonoBehaviour
     public void OpenMenu()
     {
         _menu.SetActive(true);
+        
+        _gameOver.SetActive(false);
         
         _parallax.StopParallax();
         
@@ -35,6 +40,8 @@ public class FlowController : MonoBehaviour
     public void OpenGame()
     {
         _menu.SetActive(false);
+        
+        _gameOver.SetActive(false);
         
         _parallax.StartParallax();
 
@@ -59,6 +66,8 @@ public class FlowController : MonoBehaviour
     public void OpenResults()
     {
         _menu.SetActive(false);
+        
+        _gameOver.SetActive(true);
         
         _parallax.StopParallax();
         
