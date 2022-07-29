@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class FlowController : MonoBehaviour
 {
@@ -17,6 +18,9 @@ public class FlowController : MonoBehaviour
     [SerializeField]
     private Player _player;
     private Vector3 _playerInitialPosition;
+
+    public Text scoreText;
+    private int score;
     
     #region Menu
     
@@ -89,5 +93,10 @@ public class FlowController : MonoBehaviour
         _playerInitialPosition = _player.transform.localPosition;
 
         OpenMenu();
+    }
+    public void IncreaseScore()
+    {
+        score++;
+        scoreText.text = score.ToString();
     }
 }
