@@ -28,6 +28,7 @@ public class FlowController : MonoBehaviour
         
         _parallax.StopParallax();
         
+        _player.transform.localPosition = _playerInitialPosition;
         _player.enabled = false;
         
         Debug.Log("ABRIU MENU");
