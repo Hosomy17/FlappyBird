@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Player : MonoBehaviour
 {
@@ -14,9 +15,11 @@ public class Player : MonoBehaviour
     public float strength = 5f;
     
     [SerializeField]
-    private AudioClip _audioSource;
+    private AudioClip _jumpSFX;
     [SerializeField]
-    private AudioClip _audioSource2;
+    private AudioClip _hitSFX;
+    [SerializeField]
+    private AudioClip _scoreSFX;
 
 
     private void Awake()
@@ -35,7 +38,7 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)) {
             direction = Vector3.up * strength; 
             
-            AudioSource.PlayClipAtPoint(_audioSource,Vector3.zero);
+            AudioSource.PlayClipAtPoint(_jumpSFX,Vector3.zero);
         }
         
         /*Precisamos adicionar gravidade na direção, ela só funcionará quando adicionarmos o input dela e em
@@ -68,13 +71,14 @@ public class Player : MonoBehaviour
         
        if (other.gameObject.tag == "Obstacle")
        {   
-           AudioSource.PlayClipAtPoint(_audioSource2,Vector3.zero);
+           AudioSource.PlayClipAtPoint(_hitSFX,Vector3.zero);
            // vai procurar por toda cena esse objeto, porém é algo "custoso" não é a melhor função pra usar
            FlowController.Global.OpenResults();
             
        } 
        else if (other.gameObject.tag == "Scoring")
        {
+           AudioSource.PlayClipAtPoint(_scoreSFX,Vector3.zero);
            FlowController.Global.IncreaseScore();
        }
     }

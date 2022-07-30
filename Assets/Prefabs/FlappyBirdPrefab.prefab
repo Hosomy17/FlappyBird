@@ -141,3 +141,6 @@ MonoBehaviour:
   direction: {x: 0, y: 0, z: 0}
   gravity: -9.8
   strength: 5
+  _jumpSFX: {fileID: 8300000, guid: 554f53652eb8abd4ca6bc177e520963d, type: 3}
+  _hitSFX: {fileID: 8300000, guid: d3216739ca4969649a4d985f15067123, type: 3}
+  _scoreSFX: {fileID: 8300000, guid: 75ae264d825383d40ae27bfebed16b81, type: 3}

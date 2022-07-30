@@ -18,9 +18,17 @@ public class FlowController : MonoBehaviour
     [SerializeField]
     private Player _player;
     private Vector3 _playerInitialPosition;
+    
+    [SerializeField]
+    private Spawner _spawner;
 
-    public Text scoreText;
-    private int score;
+    [SerializeField]
+    private Text _scoreText;
+    
+    [SerializeField]
+    private Text _highScoreText;
+    
+    private int _score;
     
     #region Menu
     
@@ -31,6 +39,8 @@ public class FlowController : MonoBehaviour
         _gameOver.SetActive(false);
         
         _parallax.StopParallax();
+
+        _spawner.enabled = false;
         
         _player.transform.localPosition = _playerInitialPosition;
         _player.enabled = false;
@@ -54,12 +64,17 @@ public class FlowController : MonoBehaviour
         _player.direction = Vector3.zero;
         _player.enabled = true;
         
+        _spawner.enabled = true;
+        
         Pipes[] pipes = FindObjectsOfType<Pipes>();
 
         for (int i = 0; i < pipes.Length; i++)
         {
             Destroy(pipes[i].gameObject);
         }
+
+        _score = 0;
+        _scoreText.text = _score.ToString();
         
         Debug.Log("ABRIU JOGO");
     }
@@ -77,6 +92,22 @@ public class FlowController : MonoBehaviour
         _parallax.StopParallax();
         
         _player.enabled = false;
+        
+        _spawner.enabled = false;
+        
+        Pipes[] pipes = FindObjectsOfType<Pipes>();
+
+        for (int i = 0; i < pipes.Length; i++)
+        {
+            pipes[i].enabled = false;
+        }
+
+        var highScore = PlayerPrefs.GetInt("HighScore", 0);
+
+        highScore = (highScore >= _score) ? highScore : _score;
+        PlayerPrefs.SetInt("HighScore", highScore);
+
+        _highScoreText.text = highScore.ToString();
         
         Debug.Log("ABRIU RESULTADOS");
     }
@@ -96,7 +127,7 @@ public class FlowController : MonoBehaviour
     }
     public void IncreaseScore()
     {
-        score++;
-        scoreText.text = score.ToString();
+        _score++;
+        _scoreText.text = _score.ToString();
     }
 }
